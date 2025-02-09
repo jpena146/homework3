@@ -15,6 +15,7 @@
     myArray.value.push({
       content: input_content.value,
       category: input_category.value,
+      done: false,
     })
 
     input_content.value = ''
@@ -52,7 +53,7 @@
         <label>
           <input type="radio" name="category" value="personal" v-model="input_category">
           <span class = "bubble personal"></span>
-          <div>Business</div>
+          <div>Personal</div>
         </label>
     </div>
 
@@ -63,6 +64,18 @@
   </section>
 
   <section class="todo-list">
+    <div class="list">
+      <div v-for="x in myArray" :class="`todo-item ${x.done ? 'done': 'not-done'}`" :key="x">
+        <label>
+          <input type="checkbox" v-model="x.done"/>
+          <span :class="`bubble ${x.category}`"></span>
+        </label>
+        <div class="todo-content">
+          <input type="text" v-model="x.content"/>
+        </div>
+      
+      </div>
+    </div>
 
   </section>
 
